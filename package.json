@@ -1,0 +1,10 @@
+{
+  "name": "webpack-s3-terraform",
+  "version": "1.0.0",
+  "description": "A repository of recent studies",
+  "main": "index.js",
+  "repository": "https://github.com/shoma3571/webpack-s3-terraform",
+  "author": "Shoma Kobayashi <sho1228.k@gmail.com>",
+  "license": "MIT",
+  "private": true
+}

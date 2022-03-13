@@ -4,15 +4,15 @@
 
 resource "aws_s3_bucket" "site" {
   # バケットの名前
-  bucket = "${var.bucket_name}"
+  bucket = var.bucket_name
 }
 
 
 # CloudFrontからのオリジンアクセスアイデンティティ付きアクセスに対してReadのみを許可する
 # 上で定義したバケットにポリシーの付与
 resource "aws_s3_bucket_policy" "site" {
-  bucket = "${aws_s3_bucket.site.id}"
-  policy = "${data.aws_iam_policy_document.s3_site_policy.json}"
+  bucket = aws_s3_bucket.site.id
+  policy = data.aws_iam_policy_document.s3_site_policy.json
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document

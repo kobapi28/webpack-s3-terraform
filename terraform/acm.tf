@@ -4,7 +4,7 @@
 resource "aws_acm_certificate" "acm_cert" {
   provider = aws
   # 証明書を発行するドメイン名
-  domain_name = "${var.root_domain}"
+  domain_name = var.root_domain
   # 発行された証明書において、SANとなるべきドメインの設定
   # SANとは？
   subject_alternative_names = ["*.${var.root_domain}"]
@@ -15,23 +15,23 @@ resource "aws_acm_certificate" "acm_cert" {
 resource "aws_route53_record" "acm_cert" {
   for_each = {
     for dvo in aws_acm_certificate.acm_cert.domain_validation_options : dvo.domain_name => {
-      name = dvo.resource_record_name
+      name   = dvo.resource_record_name
       record = dvo.resource_record_value
-      type = dvo.resource_record_type
+      type   = dvo.resource_record_type
     }
   }
-  
+
   allow_overwrite = true
-  name = each.value.name
-  type = each.value.type
-  zone_id = "${aws_route53_zone.site_zone.zone_id}"
-  records = [each.value.record]
-  ttl = 60
+  name            = each.value.name
+  type            = each.value.type
+  zone_id         = aws_route53_zone.site_zone.zone_id
+  records         = [each.value.record]
+  ttl             = 60
 }
 
 resource "aws_acm_certificate_validation" "acm_cert" {
   # 検証対象の証明書のARN
-  certificate_arn = "${aws_acm_certificate.acm_cert.arn}"
+  certificate_arn = aws_acm_certificate.acm_cert.arn
   # 検証を実施するFQDNのリスト
   validation_record_fqdns = [for record in aws_route53_record.acm_cert : record.fqdn]
 }

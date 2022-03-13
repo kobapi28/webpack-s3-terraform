@@ -10,6 +10,16 @@ module.exports = {
   output: {
     filename: 'main.bundle.js',
     path: path.resolve(__dirname, 'public'),
-    clean: true
+    clean: {
+      keep: /index.html/
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(css|sass|scss)$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
   }
 }

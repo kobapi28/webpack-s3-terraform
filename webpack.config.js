@@ -1,4 +1,6 @@
 const path = require('path')
+// cssファイルとして読み込めるように
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   mode: 'development',
@@ -18,8 +20,13 @@ module.exports = {
     rules: [
       {
         test: /\.(css|sass|scss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       }
     ]
-  }
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'main.css',
+    })
+  ]
 }

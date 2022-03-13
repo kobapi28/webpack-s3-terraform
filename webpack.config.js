@@ -1,6 +1,8 @@
 const path = require('path')
 // cssファイルとして読み込めるように
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+// HTMLファイルのビルド
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: 'development',
@@ -12,9 +14,7 @@ module.exports = {
   output: {
     filename: 'main.bundle.js',
     path: path.resolve(__dirname, 'public'),
-    clean: {
-      keep: /index.html/
-    }
+    clean: true
   },
   module: {
     rules: [
@@ -27,6 +27,11 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'main.css',
+    }),
+    new HtmlWebpackPlugin({
+      template: `${__dirname}/src/index.html`,
+      filename: `${__dirname}/public/index.html`,
+      inject: 'body'
     })
   ]
 }

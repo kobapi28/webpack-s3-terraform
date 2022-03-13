@@ -6,5 +6,10 @@
   "repository": "https://github.com/shoma3571/webpack-s3-terraform",
   "author": "Shoma Kobayashi <sho1228.k@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
 }

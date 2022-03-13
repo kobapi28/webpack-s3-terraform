@@ -8,5 +8,4 @@
 resource "aws_s3_bucket" "site" {
   # バケットの名前
   bucket = "${var.bucket_name}"
-  acl = "private"
 }

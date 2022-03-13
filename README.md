@@ -1,11 +1,12 @@
 # webpack-s3-terraform
-HTML + SCSS + JavaScript を使ったサイトをS3でホスティングする。
+HTML + SCSS + JavaScript を使ったサイトを S3 + CloudFront でホスティングする。
 リソースの管理にはTerraformを用いて、GitHub Actionsを用いたCD環境も整備する。
 
 ## 構成
 ```bash
 ./
-├── terraform # s3, cloudfrontなどのリソース管理 
+├── terraform # s3, cloudfrontなどのリソース管理
+├── .github/
 ├── .gitignore
 ├── README.md 
 ├── node_modules/
@@ -15,6 +16,17 @@ HTML + SCSS + JavaScript を使ったサイトをS3でホスティングする�
 ├── webpack.config.js
 └── yarn.lock
 ```
+
+## 実行
+```bash
+yarn install
+yarn serve
+```
+
+## CD
+1. プロダクションビルドしたものを`public/`に配置。
+2. それをS3にフォルダごとアップロードする。
+3. CloudFrontのキャッシュを削除
 
 ## terraform commands
 ```bash

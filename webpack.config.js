@@ -9,7 +9,8 @@ module.exports = {
   entry: './src/index.js',
   devtool: 'inline-source-map',
   devServer: {
-    static: './public'
+    static: './public',
+    watchFiles: ['./src/index.html']
   },
   output: {
     filename: 'main.bundle.js',

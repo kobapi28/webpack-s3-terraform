@@ -23,6 +23,10 @@ yarn install
 yarn serve
 ```
 
+## CI
+Lighthouseの各スコアが90以上にならないとapproveされないものを作りたい
+(作成中)
+
 ## CD
 1. プロダクションビルドしたものを`public/`に配置。
 2. それをS3にフォルダごとアップロードする。

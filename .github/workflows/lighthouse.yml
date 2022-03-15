@@ -27,15 +27,11 @@ jobs:
           mkdir out
           touch out/lhci_log.txt
           yarn lhci autorun > ./out/lhci_log.txt
+          cat .lighthouseci/assertion-results.json
         continue-on-error: true
         env: 
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       
-      - name: collect command
-        run: |
-          yarn lhci collect
-          cat .lighthouseci/assertion-results.json
-
       - name: post comment
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

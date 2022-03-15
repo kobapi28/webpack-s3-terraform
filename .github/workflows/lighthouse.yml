@@ -22,20 +22,14 @@ jobs:
           yarn prod
 
       - name: run Lighthouse cli 
-        run: yarn lhci autorun
+        id: lhci
+        run: yarn lhci autorun > ./out/lhci_log.txt
+        continue-on-error: true
         env: 
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-
-      - name: create comment
-        run: |
-          cat << EOF > comments
-          1st
-          2nd
-          3rd
-          EOF
 
       - name: post comment
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: ${{ github.event.pull_request.html_url }}
-        run: gh pr comment -F ./comments "${URL}"
+        run: gh pr comment -F ./out/lhci_log.txt "${URL}"

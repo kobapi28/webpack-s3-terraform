@@ -34,7 +34,7 @@ jobs:
       - name: collect command
         run: |
           yarn lhci collect
-          ls -a .lighthouseci
+          cat .lighthouseci/assertion-results.json
 
       - name: post comment
         env: 

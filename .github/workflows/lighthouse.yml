@@ -1,0 +1,23 @@
+name: Lighthouse CI
+on: 
+  pull_request: 
+
+
+jobs:
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: run Lighthouse cli after install
+        run: |
+          yarn add @lhci/cli@0.8.x
+          yarn prod
+          yarn lhci autorun

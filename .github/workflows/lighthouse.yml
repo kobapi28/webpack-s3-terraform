@@ -23,7 +23,10 @@ jobs:
 
       - name: run Lighthouse cli 
         id: lhci
-        run: yarn lhci autorun > ./out/lhci_log.txt
+        run: |
+          mkdir out
+          touch out/lhci_log.txt
+          yarn lhci autorun > ./out/lhci_log.txt
         continue-on-error: true
         env: 
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

@@ -23,3 +23,5 @@ jobs:
 
       - name: run Lighthouse cli 
         run: yarn lhci autorun
+        env: 
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

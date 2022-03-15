@@ -20,4 +20,4 @@ jobs:
         run: |
           yarn add @lhci/cli@0.8.x
           yarn prod
-          lhci autorun
+          yarn lhci autorun

@@ -16,8 +16,10 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
-      - name: run Lighthouse cli after install
+      - name: install Lighthouse cli and build
         run: |
           yarn add @lhci/cli@0.8.x
           yarn prod
-          yarn lhci autorun
+
+      - name: run Lighthouse cli 
+        run: yarn lhci autorun

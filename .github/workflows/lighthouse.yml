@@ -16,19 +16,17 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
-      - name: install Lighthouse cli and build
+      - name: production build
+        run : yarn prod
+
+      - name: install Lighthouse cli
         run: |
           yarn add @lhci/cli@0.8.x
-          yarn prod
 
       - name: run Lighthouse cli 
         id: lhci
         run: |
-          mkdir out
-          touch out/lhci_log.txt
-          yarn lhci collect
-          yarn lhci assert > ./out/lhci_log.txt
-          yarn lhci upload
+          yarn autorun
         continue-on-error: true
         env: 
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
@@ -37,4 +35,4 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: ${{ github.event.pull_request.html_url }}
-        run: gh pr comment -F ./out/lhci_log.txt "${URL}"
+        run: gh pr comment -F .lighthouseci/assertion-results.json "${URL}"

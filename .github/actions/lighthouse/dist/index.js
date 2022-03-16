@@ -1665,7 +1665,9 @@ var __webpack_exports__ = {};
 const generateTable = (obj) => {
   const stream = (0,fs__WEBPACK_IMPORTED_MODULE_0__.createWriteStream)('result-markdown.md');
   // デプロイされるURLの書き込み
-  stream.write((0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('report-url'));
+  const reportUrl = (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('report-url');
+  console.log(reportUrl);
+  stream.write(reportUrl);
   if (obj === []) {
     stream.write('success!');
     stream.end('\n')

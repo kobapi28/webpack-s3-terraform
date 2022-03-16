@@ -29,7 +29,7 @@ jobs:
           mkdir out
           touch out/autorun.txt
           yarn lhci autorun | grep 'storage.googleapis.com' > ./out/autorun.txt
-          report-url=$(cat /out/autorun.txt)
+          report-url=$(cat ./out/autorun.txt)
           echo $report-url
           echo "::set-output name=report-url::$report-url"
         continue-on-error: true

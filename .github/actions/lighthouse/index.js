@@ -2,8 +2,12 @@ import { createWriteStream, readFileSync } from 'fs';
 import { setOutput, setFailed, getInput } from '@actions/core';
 
 const generateTable = (obj) => {
-  if (obj === []) return;
   const stream = createWriteStream('result-markdown.md');
+  if (obj === []) {
+    stream.write('success!');
+    stream.end('\n')
+    return;
+  };
   stream.write('|auditProperty|actual|expected|level|\n');
   stream.write('|---|---|---|---|\n')
   for (const o of obj) {

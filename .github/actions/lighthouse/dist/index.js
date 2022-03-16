@@ -1664,11 +1664,13 @@ var __webpack_exports__ = {};
 
 const generateTable = (obj) => {
   if (obj === []) return;
-  console.log('|auditProperty|actual|expected|level|')
-  console.log('|---|---|---|---|')
+  const stream = (0,fs__WEBPACK_IMPORTED_MODULE_0__.createWriteStream)('result-markdown.md');
+  stream.write('|auditProperty|actual|expected|level|\n');
+  stream.write('|---|---|---|---|\n')
   for (const o of obj) {
-    console.log(`|${o['auditProperty']}|${o['actual']}|${o['expected']}|${o['level']}|`)
+    stream.write(`|${o['auditProperty']}|${o['actual']}|${o['expected']}|${o['level']}|\n`)
   }
+  stream.end('\n')
 }
 
 

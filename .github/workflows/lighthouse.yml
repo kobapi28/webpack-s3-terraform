@@ -37,7 +37,7 @@ jobs:
         uses: ./.github/actions/lighthouse
         id: parse
         with:
-          json-data: .lighthouseci/assertion-results.json
+          json-file-path: .lighthouseci/assertion-results.json
       
       - name: post comment
         env: 

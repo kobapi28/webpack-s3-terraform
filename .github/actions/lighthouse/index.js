@@ -1,13 +1,15 @@
-import { readFileSync } from 'fs';
+import { createWriteStream, readFileSync } from 'fs';
 import { setOutput, setFailed, getInput } from '@actions/core';
 
 const generateTable = (obj) => {
   if (obj === []) return;
-  console.log('|auditProperty|actual|expected|level|')
-  console.log('|---|---|---|---|')
+  const stream = createWriteStream('result-markdown.md');
+  stream.write('|auditProperty|actual|expected|level|\n');
+  stream.write('|---|---|---|---|\n')
   for (const o of obj) {
-    console.log(`|${o['auditProperty']}|${o['actual']}|${o['expected']}|${o['level']}|`)
+    stream.write(`|${o['auditProperty']}|${o['actual']}|${o['expected']}|${o['level']}|\n`)
   }
+  stream.end('\n')
 }
 
 

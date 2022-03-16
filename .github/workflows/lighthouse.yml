@@ -43,4 +43,4 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: ${{ github.event.pull_request.html_url }}
-        run: gh pr comment -F ./out/autorun.txt "${URL}"
+        run: gh pr comment -F ./result-markdown.md "${URL}"

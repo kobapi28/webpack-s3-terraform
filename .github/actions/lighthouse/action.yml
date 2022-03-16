@@ -5,8 +5,8 @@ inputs:
     description: lighthouseci実行時に生成されたファイルのパス
     required: true
 outputs:
-  result-md-file:
-    description: markdownに変換したファイル
+  status:
+    description: 生成できたかできなかったか
 runs:
   using: node16
   main: dist/index.js

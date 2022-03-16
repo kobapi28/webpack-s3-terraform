@@ -4,9 +4,15 @@
   "description": "format error status",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "ncc build index.js -o dist"
+  },
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@vercel/ncc": "^0.33.3"
+  }
 }

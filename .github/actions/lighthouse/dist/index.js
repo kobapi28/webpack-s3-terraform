@@ -1662,6 +1662,10 @@ var __webpack_exports__ = {};
 
 
 
+const generateLevelColumn = (level) => {
+  return level === 'error' ? `:x: ${level}` : `:warning: ${level}`
+}
+
 const generateTable = (obj) => {
   const stream = (0,fs__WEBPACK_IMPORTED_MODULE_0__.createWriteStream)('result-markdown.md');
   // デプロイされるURLの書き込み
@@ -1675,7 +1679,7 @@ const generateTable = (obj) => {
   stream.write('|auditProperty|actual|expected|level|\n');
   stream.write('|---|---|---|---|\n')
   for (const o of obj) {
-    stream.write(`|${o['auditProperty']}|${o['actual']}|${o['expected']}|${o['level']}|\n`)
+    stream.write(`|${o['auditProperty']}|${o['actual']}|${o['expected']}|${generateLevelColumn(o['level'])}|\n`)
   }
   stream.end('\n')
 }

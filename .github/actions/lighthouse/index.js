@@ -1,6 +1,10 @@
 import { createWriteStream, readFileSync } from 'fs';
 import { setOutput, setFailed, getInput } from '@actions/core';
 
+const generateLevelColumn = (level) => {
+  return level === 'error' ? `:x: ${level}` : `:warning: ${level}`
+}
+
 const generateTable = (obj) => {
   const stream = createWriteStream('result-markdown.md');
   // デプロイされるURLの書き込み
@@ -14,7 +18,7 @@ const generateTable = (obj) => {
   stream.write('|auditProperty|actual|expected|level|\n');
   stream.write('|---|---|---|---|\n')
   for (const o of obj) {
-    stream.write(`|${o['auditProperty']}|${o['actual']}|${o['expected']}|${o['level']}|\n`)
+    stream.write(`|${o['auditProperty']}|${o['actual']}|${o['expected']}|${generateLevelColumn(o['level'])}|\n`)
   }
   stream.end('\n')
 }

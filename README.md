@@ -24,8 +24,9 @@ yarn serve
 ```
 
 ## CI
-Lighthouseの各スコアが90以上にならないとapproveされないものを作りたい
-(作成中)
+以下のようにデプロイURLとエラー項目が表示されるように実装。
+![image](https://user-images.githubusercontent.com/60056125/158501104-7e713d9a-4ed8-4e86-a486-f06cbe3a0496.png)
+
 
 ## CD
 1. プロダクションビルドしたものを`public/`に配置。

@@ -4,6 +4,9 @@ inputs:
   json-file-path:
     description: lighthouseci実行時に生成されたファイルのパス
     required: true
+  report-url: 
+    description: lighthouseci実行時にレポートがデプロイされるurlのファイルパス
+    required: true
 outputs:
   status:
     description: 生成できたかできなかったか

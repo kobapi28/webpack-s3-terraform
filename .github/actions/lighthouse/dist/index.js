@@ -1663,8 +1663,14 @@ var __webpack_exports__ = {};
 
 
 const generateTable = (obj) => {
-  if (obj === []) return;
   const stream = (0,fs__WEBPACK_IMPORTED_MODULE_0__.createWriteStream)('result-markdown.md');
+  // デプロイされるURLの書き込み
+  stream.write((0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('report-url'));
+  if (obj === []) {
+    stream.write('success!');
+    stream.end('\n')
+    return;
+  };
   stream.write('|auditProperty|actual|expected|level|\n');
   stream.write('|---|---|---|---|\n')
   for (const o of obj) {

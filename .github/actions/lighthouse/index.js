@@ -3,6 +3,8 @@ import { setOutput, setFailed, getInput } from '@actions/core';
 
 const generateTable = (obj) => {
   const stream = createWriteStream('result-markdown.md');
+  // デプロイされるURLの書き込み
+  stream.write(getInput('report-url'));
   if (obj === []) {
     stream.write('success!');
     stream.end('\n')

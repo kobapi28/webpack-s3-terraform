@@ -32,6 +32,12 @@ jobs:
         continue-on-error: true
         env: 
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: json to markdown
+        uses: ./.github/actions/lighthouse
+        id: parse
+        with:
+          json-data: .lighthouseci/assertion-results.json
       
       - name: post comment
         env: 

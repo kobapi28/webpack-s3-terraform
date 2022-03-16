@@ -29,9 +29,9 @@ jobs:
           mkdir out
           touch out/autorun.txt
           yarn lhci autorun | grep 'storage.googleapis.com' > ./out/autorun.txt
-          report-url=$(cat ./out/autorun.txt)
-          echo $report-url
-          echo "::set-output name=report-url::$report-url"
+          report_url=$(cat ./out/autorun.txt)
+          echo $report_url
+          echo "::set-output name=report_url::$report_url"
         continue-on-error: true
         env: 
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
@@ -41,7 +41,7 @@ jobs:
         id: parse
         with:
           json-file-path: .lighthouseci/assertion-results.json
-          report-url: ${{ steps.lhci.outputs.report-url }}
+          report-url: ${{ steps.lhci.outputs.report_url }}
       
       - name: post comment
         env: 

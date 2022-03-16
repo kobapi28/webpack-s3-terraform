@@ -5,8 +5,7 @@ const generateTable = (obj) => {
   const stream = createWriteStream('result-markdown.md');
   // デプロイされるURLの書き込み
   const reportUrl = getInput('report-url');
-  console.log(reportUrl);
-  stream.write(reportUrl);
+  stream.write(`${reportUrl}\n`);
   if (obj === []) {
     stream.write('success!');
     stream.end('\n')

@@ -37,7 +37,7 @@ jobs:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
       - name: json to markdown
-        uses: shoma3571/lhci-format-action@v1.2
+        uses: shoma3571/lhci-format-action@v1.x
         id: parse
         with:
           json-file-path: .lighthouseci/assertion-results.json
